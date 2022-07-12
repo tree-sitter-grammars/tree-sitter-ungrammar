@@ -1,0 +1,26 @@
+{
+  "name": "tree-sitter-ungrammar",
+  "version": "1.0.0",
+  "main": "bindings/node",
+  "author": "Philipp Mildenberger <philipp@mildenberger.me>",
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.16.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.6"
+  },
+  "tree-sitter": [
+    {
+      "file-types": [
+        "ungram",
+        "ungrammar"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injection-regex": "^(ungram|ungrammar)$",
+      "scope": "source.ungram"
+    }
+  ]
+}
