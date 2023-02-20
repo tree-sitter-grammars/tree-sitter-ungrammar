@@ -1,3 +1,12 @@
+/**
+ * @file Ungrammar grammar for tree-sitter
+ * @author Philipp Mildenberger <philipp@mildenberger.me>
+ * @author Amaan Qureshi <amaanq12@gmail.com>
+ * @license MIT
+ * @see {@link https://rust-analyzer.github.io/blog/2020/10/24/introducing-ungrammar.html|official syntax spec}
+ * @see {@link https://github.com/rust-analyzer/ungrammar| official source}
+ */
+
 /* eslint-disable arrow-parens */
 /* eslint-disable camelcase */
 /* eslint-disable-next-line spaced-comment */
