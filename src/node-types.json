@@ -1,6 +1,6 @@
 [
   {
-    "type": "alt_rule",
+    "type": "alternation",
     "named": true,
     "fields": {},
     "children": {
@@ -8,22 +8,41 @@
       "required": true,
       "types": [
         {
-          "type": "seq_rule",
+          "type": "sequence",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "atom_rule",
+    "type": "grammar",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "node",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "label",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "labeled_rule",
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "label_name",
           "named": true
         },
         {
@@ -31,11 +50,11 @@
           "named": true
         },
         {
-          "type": "opt_rule",
+          "type": "optional",
           "named": true
         },
         {
-          "type": "rep_rule",
+          "type": "repetition",
           "named": true
         },
         {
@@ -43,26 +62,7 @@
           "named": true
         },
         {
-          "type": "token_rule",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "labeled_rule",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "atom_rule",
-          "named": true
-        },
-        {
-          "type": "identifier",
+          "type": "token",
           "named": true
         }
       ]
@@ -77,7 +77,7 @@
       "required": true,
       "types": [
         {
-          "type": "identifier",
+          "type": "definition",
           "named": true
         },
         {
@@ -103,7 +103,7 @@
     }
   },
   {
-    "type": "opt_rule",
+    "type": "optional",
     "named": true,
     "fields": {},
     "children": {
@@ -111,14 +111,34 @@
       "required": true,
       "types": [
         {
-          "type": "atom_rule",
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "node_rule",
+          "named": true
+        },
+        {
+          "type": "optional",
+          "named": true
+        },
+        {
+          "type": "repetition",
+          "named": true
+        },
+        {
+          "type": "rule",
+          "named": true
+        },
+        {
+          "type": "token",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "rep_rule",
+    "type": "repetition",
     "named": true,
     "fields": {},
     "children": {
@@ -126,7 +146,27 @@
       "required": true,
       "types": [
         {
-          "type": "atom_rule",
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "node_rule",
+          "named": true
+        },
+        {
+          "type": "optional",
+          "named": true
+        },
+        {
+          "type": "repetition",
+          "named": true
+        },
+        {
+          "type": "rule",
+          "named": true
+        },
+        {
+          "type": "token",
           "named": true
         }
       ]
@@ -141,14 +181,14 @@
       "required": true,
       "types": [
         {
-          "type": "alt_rule",
+          "type": "alternation",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "seq_rule",
+    "type": "sequence",
     "named": true,
     "fields": {},
     "children": {
@@ -156,22 +196,27 @@
       "required": true,
       "types": [
         {
-          "type": "atom_rule",
+          "type": "label",
           "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "source_file",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
+        },
         {
-          "type": "node",
+          "type": "node_rule",
+          "named": true
+        },
+        {
+          "type": "optional",
+          "named": true
+        },
+        {
+          "type": "repetition",
+          "named": true
+        },
+        {
+          "type": "rule",
+          "named": true
+        },
+        {
+          "type": "token",
           "named": true
         }
       ]
@@ -187,21 +232,6 @@
       "types": [
         {
           "type": "token_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "token_rule",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "token",
           "named": true
         }
       ]
@@ -236,11 +266,19 @@
     "named": false
   },
   {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "definition",
+    "named": true
+  },
+  {
     "type": "identifier",
     "named": true
   },
   {
-    "type": "line_comment",
+    "type": "label_name",
     "named": true
   },
   {
