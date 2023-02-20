@@ -16,7 +16,7 @@
 [
   "*"
   "?"
-] @repeat
+] @operator.repeat
 
 [
   ":"
@@ -26,3 +26,5 @@
   "("
   ")"
 ] @punctuation.bracket
+
+(ERROR) @error
