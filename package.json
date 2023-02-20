@@ -1,26 +1,47 @@
 {
   "name": "tree-sitter-ungrammar",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "description": "Ungrammar grammar for tree-sitter",
   "main": "bindings/node",
+  "keywords": [
+    "parser",
+    "lexer",
+    "ungrammar"
+  ],
   "author": "Philipp Mildenberger <philipp@mildenberger.me>",
+  "contributors": [
+    "Amaan Qureshi <amaanq12@gmail.com>"
+  ],
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Philipp-M/tree-sitter-ungrammar/issues"
+  },
+  "homepage": "https://github.com/Philipp-M/tree-sitter-ungrammar#readme",
   "dependencies": {
     "nan": "^2.16.0"
   },
   "devDependencies": {
+    "eslint": "^8.34.0",
+    "eslint-config-google": "^0.14.0",
     "tree-sitter-cli": "^0.20.6"
+  },
+  "repository": "https://github.com/Philipp-M/tree-sitter-ungrammar",
+  "scripts": {
+    "build": "tree-sitter generate && node-gyp build",
+    "test": "tree-sitter test && script/parse-examples",
+    "parse": "tree-sitter parse",
+    "test-windows": "tree-sitter test"
   },
   "tree-sitter": [
     {
+      "scope": "source.ungram",
       "file-types": [
-        "ungram",
-        "ungrammar"
-      ],
-      "highlights": [
-        "queries/highlights.scm"
+        "ungram"
       ],
       "injection-regex": "^(ungram|ungrammar)$",
-      "scope": "source.ungram"
+      "highlights": [
+        "queries/highlights.scm"
+      ]
     }
   ]
 }

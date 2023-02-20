@@ -1,7 +1,8 @@
 {
   "name": "ungrammar",
+  "word": "identifier",
   "rules": {
-    "source_file": {
+    "grammar": {
       "type": "REPEAT",
       "content": {
         "type": "SYMBOL",
@@ -12,8 +13,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "identifier"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          },
+          "named": true,
+          "value": "definition"
         },
         {
           "type": "STRING",
@@ -27,9 +33,9 @@
     },
     "rule": {
       "type": "SYMBOL",
-      "name": "alt_rule"
+      "name": "alternation"
     },
-    "atom_rule": {
+    "_atom_rule": {
       "type": "CHOICE",
       "members": [
         {
@@ -38,11 +44,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "token_rule"
+          "name": "token"
         },
         {
           "type": "SYMBOL",
-          "name": "labeled_rule"
+          "name": "label"
         },
         {
           "type": "SEQ",
@@ -63,20 +69,20 @@
         },
         {
           "type": "SYMBOL",
-          "name": "rep_rule"
+          "name": "repetition"
         },
         {
           "type": "SYMBOL",
-          "name": "opt_rule"
+          "name": "optional"
         }
       ]
     },
-    "rep_rule": {
+    "repetition": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "atom_rule"
+          "name": "_atom_rule"
         },
         {
           "type": "STRING",
@@ -84,12 +90,12 @@
         }
       ]
     },
-    "opt_rule": {
+    "optional": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "atom_rule"
+          "name": "_atom_rule"
         },
         {
           "type": "STRING",
@@ -100,63 +106,6 @@
     "node_rule": {
       "type": "SYMBOL",
       "name": "identifier"
-    },
-    "token_rule": {
-      "type": "SYMBOL",
-      "name": "token"
-    },
-    "labeled_rule": {
-      "type": "PREC_LEFT",
-      "value": 1,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "identifier"
-          },
-          {
-            "type": "STRING",
-            "value": ":"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "atom_rule"
-          }
-        ]
-      }
-    },
-    "seq_rule": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SYMBOL",
-        "name": "atom_rule"
-      }
-    },
-    "alt_rule": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "seq_rule"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "|"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "seq_rule"
-              }
-            ]
-          }
-        }
-      ]
     },
     "token": {
       "type": "SEQ",
@@ -175,6 +124,64 @@
         }
       ]
     },
+    "label": {
+      "type": "PREC_LEFT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            "named": true,
+            "value": "label_name"
+          },
+          {
+            "type": "STRING",
+            "value": ":"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_atom_rule"
+          }
+        ]
+      }
+    },
+    "sequence": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_atom_rule"
+      }
+    },
+    "alternation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "sequence"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "|"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "sequence"
+              }
+            ]
+          }
+        }
+      ]
+    },
     "identifier": {
       "type": "PATTERN",
       "value": "[a-zA-Z_]+"
@@ -183,7 +190,7 @@
       "type": "PATTERN",
       "value": "(?:[^'\\\\]|\\\\\\\\|\\\\')+"
     },
-    "line_comment": {
+    "comment": {
       "type": "TOKEN",
       "content": {
         "type": "SEQ",
@@ -202,17 +209,17 @@
   },
   "extras": [
     {
-      "type": "PATTERN",
-      "value": "\\s"
+      "type": "SYMBOL",
+      "name": "comment"
     },
     {
-      "type": "SYMBOL",
-      "name": "line_comment"
+      "type": "PATTERN",
+      "value": "\\s"
     }
   ],
   "conflicts": [
     [
-      "seq_rule"
+      "sequence"
     ]
   ],
   "precedences": [],
