@@ -4,7 +4,7 @@ description = "Ungrammar grammar for tree-sitter"
 version = "0.0.1"
 keywords = ["incremental", "parsing", "ungrammar"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-ungrammar"
+repository = "https://github.com/Philipp-M/tree-sitter-ungrammar"
 edition = "2021"
 license = "MIT"
 
