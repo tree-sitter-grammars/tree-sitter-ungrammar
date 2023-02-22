@@ -2,11 +2,12 @@
 name = "tree-sitter-ungrammar"
 description = "Ungrammar grammar for tree-sitter"
 version = "0.0.1"
+license = "MIT"
+readme = "bindings/rust/README.md"
 keywords = ["incremental", "parsing", "ungrammar"]
 categories = ["parsing", "text-editors"]
 repository = "https://github.com/Philipp-M/tree-sitter-ungrammar"
 edition = "2021"
-license = "MIT"
 
 build = "bindings/rust/build.rs"
 include = ["bindings/rust/*", "grammar.js", "queries/*", "src/*"]
