@@ -28,9 +28,10 @@
   "repository": "https://github.com/Philipp-M/tree-sitter-ungrammar",
   "scripts": {
     "build": "tree-sitter generate && node-gyp build",
+    "lint": "eslint grammar.js",
     "test": "tree-sitter test && script/parse-examples",
-    "parse": "tree-sitter parse",
-    "test-windows": "tree-sitter test"
+    "test-windows": "tree-sitter test",
+    "parse": "tree-sitter parse"
   },
   "tree-sitter": [
     {
