@@ -3,10 +3,8 @@
 [![CI][ci]](https://github.com/tree-sitter-grammars/tree-sitter-ungrammar/actions/workflows/ci.yml)
 [![discord][discord]](https://discord.gg/w7nTvsVJhm)
 [![matrix][matrix]](https://matrix.to/#/#tree-sitter-chat:matrix.org)
-<!-- NOTE: uncomment these if you're publishing packages: -->
-<!-- [![npm][npm]](https://www.npmjs.com/package/tree-sitter-ungrammar) -->
-<!-- [![crates][crates]](https://crates.io/crates/tree-sitter-ungrammar) -->
-<!-- [![pypi][pypi]](https://pypi.org/project/tree-sitter-ungrammar/) -->
+[![npm][npm]](https://www.npmjs.com/package/tree-sitter-ungrammar)
+[![crates][crates]](https://crates.io/crates/tree-sitter-ungrammar)
 
 A Tree-sitter parser for [ungrammar](https://github.com/rust-analyzer/ungrammar) files.
 
@@ -19,4 +17,3 @@ Adapted from the official spec documented at the top of this [grammar file](http
 [matrix]: https://img.shields.io/matrix/tree-sitter-chat%3Amatrix.org?logo=matrix&label=matrix
 [npm]: https://img.shields.io/npm/v/tree-sitter-ungrammar?logo=npm
 [crates]: https://img.shields.io/crates/v/tree-sitter-ungrammar?logo=rust
-[pypi]: https://img.shields.io/pypi/v/tree-sitter-ungrammar?logo=pypi&logoColor=ffd242
