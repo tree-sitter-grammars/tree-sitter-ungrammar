@@ -1,5 +1,5 @@
 /**
- * @file Ungrammar grammar for tree-sitter
+ * @file ungrammar grammar for tree-sitter
  * @author Philipp Mildenberger <philipp@mildenberger.me>
  * @author Amaan Qureshi <amaanq12@gmail.com>
  * @license MIT

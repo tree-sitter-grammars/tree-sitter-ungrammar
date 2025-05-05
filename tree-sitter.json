@@ -1,0 +1,30 @@
+{
+  "grammars": [
+    {
+      "name": "ungrammar",
+      "highlights": "queries/highlights.scm",
+      "injections": "queries/injections.scm",
+      "locals": "queries/locals.scm",
+      "scope": "source.ungram",
+      "injection-regex": "^ungram(mar)?$",
+      "file-types": ["ungram"]
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "description": "ungrammar grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Philipp Mildenberger",
+        "email": "philipp@mildenberger.me"
+      },
+      {
+        "name": "Amaan Qureshi",
+        "email": "amaanq12@gmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/tree-sitter-grammars/tree-sitter-ungrammar"
+    }
+  }
+}
