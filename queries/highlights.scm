@@ -18,13 +18,9 @@
   "?"
 ] @operator.repeat
 
-[
-  ":"
-] @punctuation.delimiter
+":" @punctuation.delimiter
 
 [
   "("
   ")"
 ] @punctuation.bracket
-
-(ERROR) @error

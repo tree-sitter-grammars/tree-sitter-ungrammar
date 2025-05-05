@@ -1,38 +1,41 @@
 // swift-tools-version:5.3
+
+import Foundation
 import PackageDescription
+
+var sources = ["src/parser.c"]
+if FileManager.default.fileExists(atPath: "src/scanner.c") {
+    sources.append("src/scanner.c")
+}
 
 let package = Package(
     name: "TreeSitterUngrammar",
-    platforms: [.macOS(.v10_13), .iOS(.v11)],
     products: [
         .library(name: "TreeSitterUngrammar", targets: ["TreeSitterUngrammar"]),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(name: "SwiftTreeSitter", url: "https://github.com/tree-sitter/swift-tree-sitter", from: "0.8.0"),
+    ],
     targets: [
-        .target(name: "TreeSitterUngrammar",
-                path: ".",
-                exclude: [
-                    "binding.gyp",
-                    "bindings",
-                    "Cargo.toml",
-                    "test",
-                    "examples",
-                    "grammar.js",
-                    "LICENSE",
-                    "package.json",
-                    "README.md",
-                    "script",
-                    "src/grammar.json",
-                    "src/node-types.json",
-                ],
-                sources: [
-                    "src/parser.c",
-                    "src/scanner.c",
-                ],
-                resources: [
-                    .copy("queries")
-                ],
-                publicHeadersPath: "bindings/swift",
-                cSettings: [.headerSearchPath("src")])
-    ]
+        .target(
+            name: "TreeSitterUngrammar",
+            dependencies: [],
+            path: ".",
+            sources: sources,
+            resources: [
+                .copy("queries")
+            ],
+            publicHeadersPath: "bindings/swift",
+            cSettings: [.headerSearchPath("src")]
+        ),
+        .testTarget(
+            name: "TreeSitterUngrammarTests",
+            dependencies: [
+                "SwiftTreeSitter",
+                "TreeSitterUngrammar",
+            ],
+            path: "bindings/swift/TreeSitterUngrammarTests"
+        )
+    ],
+    cLanguageStandard: .c11
 )

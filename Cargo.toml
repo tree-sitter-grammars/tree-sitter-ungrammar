@@ -1,27 +1,37 @@
 [package]
 name = "tree-sitter-ungrammar"
-description = "Ungrammar grammar for tree-sitter"
-version = "0.0.2"
+description = "ungrammar grammar for tree-sitter"
+version = "0.1.0"
 authors = [
-	"Amaan Qureshi <amaanq12@gmail.com>",
-	"Philipp Mildenberger <philipp@mildenberger.me>",
+  "Philipp Mildenberger <philipp@mildenberger.me>",
+  "Amaan Qureshi <amaanq12@gmail.com>"
 ]
 license = "MIT"
-readme = "bindings/rust/README.md"
-keywords = ["incremental", "parsing", "ungrammar"]
-categories = ["parsing", "text-editors"]
-repository = "https://github.com/Philipp-M/tree-sitter-ungrammar"
+readme = "README.md"
+keywords = ["incremental", "parsing", "tree-sitter", "ungrammar"]
+categories = ["parser-implementations", "parsing", "text-editors"]
+repository = "https://github.com/tree-sitter-grammars/tree-sitter-ungrammar"
 edition = "2021"
 autoexamples = false
 
 build = "bindings/rust/build.rs"
-include = ["bindings/rust/*", "grammar.js", "queries/*", "src/*"]
+include = [
+  "bindings/rust/*",
+  "grammar.js",
+  "queries/*",
+  "src/*",
+  "tree-sitter.json",
+  "LICENSE",
+]
 
 [lib]
 path = "bindings/rust/lib.rs"
 
 [dependencies]
-tree-sitter = "~0.20.3"
+tree-sitter-language = "0.1"
 
 [build-dependencies]
-cc = "1.0"
+cc = "1.2"
+
+[dev-dependencies]
+tree-sitter = "0.25.3"

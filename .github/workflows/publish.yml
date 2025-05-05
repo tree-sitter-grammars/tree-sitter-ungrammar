@@ -1,51 +1,23 @@
-name: Publish
+name: Publish package
 
 on:
   push:
-    branches:
-      - main
-    tags:
-      - "v*"
-  workflow_dispatch:
+    tags: ["*"]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm install
-      - run: npm test
-
-  publish-npm:
-    if: startsWith(github.ref, 'refs/tags/v')
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
-      - run: npm install
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-  publish-crates:
-    if: startsWith(github.ref, 'refs/tags/v')
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
-      - uses: katyo/publish-crates@v2
-        with:
-          registry-token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+  github:
+    uses: tree-sitter/workflows/.github/workflows/release.yml@main
+    with:
+      attestations: true
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+  npm:
+    uses: tree-sitter/workflows/.github/workflows/package-npm.yml@main
+    secrets:
+      NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+  crates:
+    uses: tree-sitter/workflows/.github/workflows/package-crates.yml@main
+    secrets:
+      CARGO_REGISTRY_TOKEN: ${{secrets.CARGO_REGISTRY_TOKEN}}
