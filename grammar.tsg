@@ -1,0 +1,48 @@
+// Ungrammar grammar for tree-sitter (native DSL).
+// Translated from grammar.js.
+
+grammar {
+    language: "ungrammar",
+    extras: [comment, regexp(r"\s")],
+    conflicts: [[sequence]],
+    word: identifier,
+}
+
+rule r#grammar { repeat(node) }
+
+rule node { seq(alias(identifier, definition), "=", r#rule) }
+
+rule r#rule { alternation }
+
+rule _atom_rule {
+    choice(
+        node_rule,
+        r#token,
+        label,
+        seq("(", r#rule, ")"),
+        repetition,
+        r#optional,
+    )
+}
+
+rule repetition { seq(_atom_rule, "*") }
+
+rule r#optional { seq(_atom_rule, "?") }
+
+rule node_rule { identifier }
+
+rule r#token { seq("'", token_identifier, "'") }
+
+rule label {
+    prec_left(1, seq(alias(identifier, label_name), ":", _atom_rule))
+}
+
+rule sequence { repeat1(_atom_rule) }
+
+rule alternation { seq(sequence, repeat(seq("|", sequence))) }
+
+rule identifier { regexp(r"[a-zA-Z_]+") }
+
+rule token_identifier { regexp(r"(?:[^'\\]|\\\\|\\')+") }
+
+rule comment { token(seq("//", regexp(r".*"))) }
